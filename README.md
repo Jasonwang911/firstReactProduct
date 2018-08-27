@@ -28,3 +28,6 @@ class C {
 connect()()
 
 ```
+
+
+## 动画 react-transition-group   npm install react-transiton-group --save
