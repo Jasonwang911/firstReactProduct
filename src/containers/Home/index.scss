@@ -1,0 +1,23 @@
+.home-header {
+    background: #2a2a2a;
+    width: 100%;
+    height: 1.06rem;
+    position: fixed;
+    top: 0 ;
+    left: 0;
+    z-index: 10;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .header-logo{
+        width: 35%;
+        display: flex;
+        height: 1rem;
+        background: url(./img/downBtn.png) center  no-repeat;
+        background-size: 100% 100%;
+    }
+    .header-list-btn{
+        line-height: 1.06rem;
+    }
+}

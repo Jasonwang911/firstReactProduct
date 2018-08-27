@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import './common/rem'
+import './common/reset.scss'
 import App from './App';
 import Home from './containers/Home/Home';
 import Profile from './containers/Profile/Profile';

@@ -27,13 +27,13 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'less-loader']
             },
             {
+                test: /\.(jpg|png|gif)$/,
+                use: 'url-loader'
+            },
+            {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
-            {
-                test: /\.(jpg | png | gif)$/,
-                use: ['url-loader']
-            }
         ]
     },
     // 源码映射
