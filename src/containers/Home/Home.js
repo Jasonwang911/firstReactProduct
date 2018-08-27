@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import HomeHeader from './HomeHeader'
+import { connect } from 'react-redux';
+import actions from './../../store/actions/home'; 
+import HomeHeader from './HomeHeader';
 
+@connect(state => ({...state.home}), actions)
 export default class Home extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             lessonList: [
                 {id: 1, name: 'vue课程', path: '/vue'},
@@ -13,15 +16,16 @@ export default class Home extends Component {
         }
     }
 
-    handleCurrentLesson(value) {
-        console.log(value.name)
+    handleCurrentLesson = (value) => {
+        console.log(value.name);
+        this.props.updateCurrentLesson(value);
     }
 
     render() {
         return (
             <div>
                 <HomeHeader lessonList={this.state.lessonList} handleCurrentLesson={this.handleCurrentLesson} />
-                home
+                {this.props.currentLesson.name}
             </div>
         )
     }
