@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --prot7999 --config webpack.config.dev.js",
+    "start": "webpack-dev-server --port 7999 --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.dev.js"
   },
   "author": "jason",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "express": "^4.16.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
