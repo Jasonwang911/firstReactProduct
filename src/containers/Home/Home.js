@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from './../../store/actions/home'; 
 import HomeHeader from './HomeHeader';
+import HomeSlider from './HomeSlider';
 
 @connect(state => ({...state.home}), actions)
 export default class Home extends Component {
@@ -16,6 +17,12 @@ export default class Home extends Component {
         }
     }
 
+    componentWillMount() {
+        if(this.props.sliders.length === 0) {
+            this.props.getSlidersAPI();
+        }
+    }
+
     handleCurrentLesson = (value) => {
         console.log(value.name);
         this.props.updateCurrentLesson(value);
@@ -25,7 +32,10 @@ export default class Home extends Component {
         return (
             <div>
                 <HomeHeader lessonList={this.state.lessonList} handleCurrentLesson={this.handleCurrentLesson} />
-                {this.props.currentLesson.name}
+                <div className="content">
+                    {this.props.sliders.length ? <HomeSlider lists={this.props.sliders}/> : null }
+                    {this.props.currentLesson.name}
+                </div>
             </div>
         )
     }

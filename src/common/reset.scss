@@ -149,4 +149,17 @@
      zoom: 1;
  }
 
+ .content {
+   position: absolute;
+   top: 1.06rem;
+   bottom: 1.06rem;
+   left: 0;
+   right: 0;
+   overflow-y: scroll;
+ }
+ .slider{
+   max-width: 100%;
+   height: 4rem;
+ }
+
 

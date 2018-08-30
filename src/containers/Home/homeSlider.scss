@@ -1,0 +1,21 @@
+.home-slider{
+    position: relative;
+    .dots{
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0;
+        width: 100%;
+        text-align:center;
+        span{
+            display: inline-block;
+            width: 0.16rem;
+            height: 0.16rem;
+            border-radius: 100%;
+            margin: 0.05rem;
+            background: #ccc;
+        }
+        .active{
+            background: skyblue;
+        }
+    }
+}

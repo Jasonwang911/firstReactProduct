@@ -31,3 +31,6 @@ connect()()
 
 
 ## 动画 react-transition-group   npm install react-transiton-group --save
+
+
+## react-swipe   npm install swipe-js-iso react-swipe --save
