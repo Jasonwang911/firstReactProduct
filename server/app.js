@@ -23,6 +23,33 @@ app.get('/sliders', function(req, res){
     })
 })
 
+// 获取课程接口  需要添加分页 
+// offet 数据偏移量   limit 每次取多少条     type 课程类型   
+app.get('/lessons/:offset/:limit/:type', function(req, res) {
+    let lessons = require('./lessons');
+    console.log(lessons)
+    let { 
+            offset, 
+            limit,
+            type
+        }  = req.params;
+    let lists = lessons.filter( (item, index) => {
+        if(type === 'all') {
+            return true;
+        }else{
+            item.type === type;
+        }
+    })
+    offset = parseInt(offset);
+    limit = parseInt(limit);
+    let newLists = lists.slice( offset, offset + limit);
+    let hasMore = offset + limit > lists.length ? false : true;
+    res.json({
+        hasMore,
+        lists: newLists
+    })
+})
+
 app.get('/', function(req, res) {
     res.json({code: 0});
 })

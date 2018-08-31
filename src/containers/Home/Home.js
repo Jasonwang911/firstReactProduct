@@ -21,6 +21,7 @@ export default class Home extends Component {
         if(this.props.sliders.length === 0) {
             this.props.getSlidersAPI();
         }
+        this.props.getHomeListsAPI();
     }
 
     handleCurrentLesson = (value) => {
@@ -34,7 +35,18 @@ export default class Home extends Component {
                 <HomeHeader lessonList={this.state.lessonList} handleCurrentLesson={this.handleCurrentLesson} />
                 <div className="content">
                     {this.props.sliders.length ? <HomeSlider lists={this.props.sliders}/> : null }
-                    {this.props.currentLesson.name}
+                    {
+                        // this.props.lists.lists.length 
+                        // ?
+                        this.props.lists.map( (item, index) => (
+                            <div key={item.id}>
+                                {item}
+                                <img src={item.image} alt=""/>
+                            </div> 
+                        ))
+                        // :
+                        // null
+                    }
                 </div>
             </div>
         )

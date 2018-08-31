@@ -2,3 +2,5 @@
 export const SET_CURRENT_LESSON = 'SET_CURRENT_LESSON';
 // 设置轮播图数据
 export const SET_SLIDERS = 'SET_SLIDERS';
+// 首页列表数据
+export const SET_HOME_LISTS = 'SET_HOME_LISTS';
