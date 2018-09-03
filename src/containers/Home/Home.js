@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from './../../store/actions/home'; 
+import './index.scss';
 import HomeHeader from './HomeHeader';
 import HomeSlider from './HomeSlider';
+import HomeList from './HomeList';
 
 @connect(state => ({...state.home}), actions)
 export default class Home extends Component {
@@ -21,7 +23,14 @@ export default class Home extends Component {
         if(this.props.sliders.length === 0) {
             this.props.getSlidersAPI();
         }
-        this.props.getHomeListsAPI();
+        if(this.props.lessons.lists.length === 0) {
+            let initParams = {
+                offet: 0,
+                limit: 20,
+                type: 'all'
+            }
+            this.props.getHomeLessonsAPI(initParams);
+        }
     }
 
     handleCurrentLesson = (value) => {
@@ -35,18 +44,19 @@ export default class Home extends Component {
                 <HomeHeader lessonList={this.state.lessonList} handleCurrentLesson={this.handleCurrentLesson} />
                 <div className="content">
                     {this.props.sliders.length ? <HomeSlider lists={this.props.sliders}/> : null }
-                    {
-                        // this.props.lists.lists.length 
-                        // ?
-                        this.props.lists.map( (item, index) => (
+                    <h5 className="lesson-title"><i>课程列表</i></h5>
+                    <HomeList lists={this.props.lessons.lists} />
+                    {/* {
+                        this.props.lessons.lists.length 
+                        ?
+                        this.props.lessons.lists.map( (item, index) => (
                             <div key={item.id}>
-                                {item}
-                                <img src={item.image} alt=""/>
+                                
                             </div> 
                         ))
-                        // :
-                        // null
-                    }
+                        :
+                        null
+                    } */}
                 </div>
             </div>
         )

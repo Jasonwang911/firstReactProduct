@@ -6,6 +6,6 @@ export function getSliders() {
 }
 
 // 获取列表数据
-export function getHomeLists(url) {
-    return axios.get(url)
+export function getHomelessons(initParams) {
+    return axios.get(`/lessons/${initParams.offet}/${initParams.limit}/${initParams.type}`)
 }

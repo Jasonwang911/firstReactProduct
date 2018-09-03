@@ -1,5 +1,5 @@
 import * as Types from './../types';
-import { getSliders, getHomeLists } from './../../api/home';
+import { getSliders, getHomelessons } from './../../api/home';
 
 let actions = {
     // 选择当前课程
@@ -15,10 +15,17 @@ let actions = {
             dispatch({type: Types.SET_SLIDERS, payload: getSliders()})
         }
     },
-    getHomeListsAPI() {
+    getHomeLessonsAPI(initParams = {offet: 0, limit: 20, type: 'all'}) {
         return function(dispatch, getState) {
+            // 获取当前状态并判断是否加载
+            let { currentLesson, lessons: {hasMore, offset, limit}} = getState().home;
+            if(!hasMore) {
+                return;
+            }
+            // 修改加载状态的值
+            dispatch({type: Types.CHANGE_LOADING_STATUS, status: true});
             // offet 数据偏移量   limit 每次取多少条     type 课程类型 
-            dispatch({type: Types.SET_HOME_LISTS, payload: getHomeLists('/lessons/10/20/all')})
+            dispatch({type: Types.SET_HOME_LISTS, payload: getHomelessons(initParams)})
         }
     }
 }

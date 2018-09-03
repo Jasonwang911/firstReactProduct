@@ -1,6 +1,7 @@
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry:'./src/index.js',
     // 多入口
     // entory: {

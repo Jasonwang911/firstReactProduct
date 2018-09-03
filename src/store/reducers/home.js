@@ -3,7 +3,13 @@ import * as Types from './../types';
 let initHomeState = {
     currentLesson: {id: 1, name: 'vue课程', path: '/vue'},
     sliders: [],
-    lists: []
+    lessons: {
+        hasMore: true,
+        lists: [],
+        offset: 0,          // 从第0条开始加载
+        limit: 10,          // 一次加载10条
+        isLoading: false,   // 加载状态
+    }
 }
 
 export default function home(state = initHomeState, action ) {
@@ -13,8 +19,18 @@ export default function home(state = initHomeState, action ) {
         case Types.SET_SLIDERS:
             return {...state, sliders: action.payload};
         case Types.SET_HOME_LISTS:
-            console.log('===>', action.payload)
-            return {...state, lists: action.payload.list};
+            return {
+                ...state, 
+                lessons: {
+                    ...action.lessons, 
+                    hasMore: action.payload.hasMore, 
+                    offset: state.lessons.offset + action.payload.lists.length, 
+                    isLoading: false, 
+                    lists: [...state.lessons.lists, ...action.payload.lists]
+                }
+            };
+        case Types.CHANGE_LOADING_STATUS: 
+            return {...state, lessons: {...state.lessons, isLoading: action.status}}
         default:
             return state;
     }
