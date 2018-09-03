@@ -13,7 +13,7 @@ export default class HomeList extends Component {
                                 
                                 <img src={image} alt=""/>
                                 <p>{title}</p>
-                                <strong>￥{price}元</strong>
+                                <strong>￥{price}.00元</strong>
                             </li>
                     )})
                 }

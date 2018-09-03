@@ -22,7 +22,7 @@ export default function home(state = initHomeState, action ) {
             return {
                 ...state, 
                 lessons: {
-                    ...action.lessons, 
+                    ...state.lessons, 
                     hasMore: action.payload.hasMore, 
                     offset: state.lessons.offset + action.payload.lists.length, 
                     isLoading: false, 
@@ -30,7 +30,18 @@ export default function home(state = initHomeState, action ) {
                 }
             };
         case Types.CHANGE_LOADING_STATUS: 
-            return {...state, lessons: {...state.lessons, isLoading: action.status}}
+            return {...state, lessons: {...state.lessons, isLoading: action.status}};
+        case Types.CLEAR_LESSONS:
+            return {
+                ...state,
+                lessons: {
+                    ...state.lessons,
+                    isLoading: false,
+                    hasMore: true,
+                    lists: [],
+                    offset: 0,
+                }
+            }
         default:
             return state;
     }

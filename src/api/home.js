@@ -7,5 +7,5 @@ export function getSliders() {
 
 // 获取列表数据
 export function getHomelessons(initParams) {
-    return axios.get(`/lessons/${initParams.offet}/${initParams.limit}/${initParams.type}`)
+    return axios.get(`/lessons/${initParams.offset}/${initParams.limit}/${initParams.type}`)
 }

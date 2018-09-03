@@ -15,17 +15,28 @@ let actions = {
             dispatch({type: Types.SET_SLIDERS, payload: getSliders()})
         }
     },
-    getHomeLessonsAPI(initParams = {offet: 0, limit: 20, type: 'all'}) {
+    getHomeLessonsAPI() {
         return function(dispatch, getState) {
             // 获取当前状态并判断是否加载
-            let { currentLesson, lessons: {hasMore, offset, limit}} = getState().home;
-            if(!hasMore) {
+            let { currentLesson, lessons: {hasMore, offset, limit, isLoading}} = getState().home;
+            if(!hasMore || isLoading) {
                 return;
             }
             // 修改加载状态的值
             dispatch({type: Types.CHANGE_LOADING_STATUS, status: true});
             // offet 数据偏移量   limit 每次取多少条     type 课程类型 
+            let initParams = {
+                offset,
+                limit,
+                type: 'all'
+            }
             dispatch({type: Types.SET_HOME_LISTS, payload: getHomelessons(initParams)})
+        }
+    },
+    refreshAPI() {
+        return function(dispatch, getState) {
+            dispatch({type: Types.CLEAR_LESSONS});
+            actions.getHomeLessonsAPI()(dispatch, getState);
         }
     }
 }

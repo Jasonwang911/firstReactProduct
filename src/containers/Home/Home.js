@@ -5,6 +5,7 @@ import './index.scss';
 import HomeHeader from './HomeHeader';
 import HomeSlider from './HomeSlider';
 import HomeList from './HomeList';
+import { loadMore, pullRefresh } from '../../util'
 
 @connect(state => ({...state.home}), actions)
 export default class Home extends Component {
@@ -19,18 +20,18 @@ export default class Home extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if(this.props.sliders.length === 0) {
             this.props.getSlidersAPI();
         }
+        
         if(this.props.lessons.lists.length === 0) {
-            let initParams = {
-                offet: 0,
-                limit: 20,
-                type: 'all'
-            }
-            this.props.getHomeLessonsAPI(initParams);
+            this.props.getHomeLessonsAPI();
         }
+
+        loadMore(this.el, this.props.getHomeLessonsAPI);
+
+        pullRefresh(this.el, this.props.refreshAPI)
     }
 
     handleCurrentLesson = (value) => {
@@ -42,21 +43,17 @@ export default class Home extends Component {
         return (
             <div>
                 <HomeHeader lessonList={this.state.lessonList} handleCurrentLesson={this.handleCurrentLesson} />
-                <div className="content">
+                <div className="content" ref={ el => this.el = el}>
                     {this.props.sliders.length ? <HomeSlider lists={this.props.sliders}/> : null }
                     <h5 className="lesson-title"><i>课程列表</i></h5>
                     <HomeList lists={this.props.lessons.lists} />
-                    {/* {
-                        this.props.lessons.lists.length 
+                    {
+                        this.props.lessons.isLoading 
                         ?
-                        this.props.lessons.lists.map( (item, index) => (
-                            <div key={item.id}>
-                                
-                            </div> 
-                        ))
-                        :
+                        <div style={{width: '100%',  textAlign: 'center'}}>正在加载</div> 
+                        : 
                         null
-                    } */}
+                    }
                 </div>
             </div>
         )

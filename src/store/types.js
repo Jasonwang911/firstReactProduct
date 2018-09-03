@@ -6,3 +6,5 @@ export const SET_SLIDERS = 'SET_SLIDERS';
 export const SET_HOME_LISTS = 'SET_HOME_LISTS';
 // 修改loading状态
 export const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS';
+// 清空首页数据
+export const CLEAR_LESSONS = 'CLEAR_LESSONS';
