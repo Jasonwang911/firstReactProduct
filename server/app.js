@@ -27,7 +27,6 @@ app.get('/sliders', function(req, res){
 // offet 数据偏移量   limit 每次取多少条     type 课程类型   
 app.get('/lessons/:offset/:limit/:type', function(req, res) {
     let lessons = require('./lessons');
-    console.log(lessons)
     let { 
             offset, 
             limit,
@@ -37,7 +36,7 @@ app.get('/lessons/:offset/:limit/:type', function(req, res) {
         if(type === 'all') {
             return true;
         }else{
-            item.type === type;
+            return item.type === type;
         }
     })
     offset = parseInt(offset);
@@ -48,6 +47,18 @@ app.get('/lessons/:offset/:limit/:type', function(req, res) {
         hasMore,
         lists: newLists
     })
+})
+
+/*  详情页接口 
+*
+*/
+app.get('/lesson/:id', function(req, res) {
+    let {id} = req.params;
+    let lessons = require('./lessons');
+    let lesson = lessons.filter( (item, index) => {
+        return parseInt(item.id) == parseInt(id) ;
+    })
+    res.json({...lesson[0]})
 })
 
 app.get('/', function(req, res) {

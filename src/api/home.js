@@ -9,3 +9,8 @@ export function getSliders() {
 export function getHomelessons(initParams) {
     return axios.get(`/lessons/${initParams.offset}/${initParams.limit}/${initParams.type}`)
 }
+
+// 获取详情页数据
+export function getLesson(lessonId) {
+    return axios.get(`/lesson/${lessonId}`)
+}

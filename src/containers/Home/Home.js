@@ -13,9 +13,10 @@ export default class Home extends Component {
         super(props)
         this.state = {
             lessonList: [
-                {id: 1, name: 'vue课程', path: '/vue'},
-                {id: 2, name: 'react课程', path: '/react'},
-                {id: 3, name: 'ng课程', path: '/ng'}
+                {id: 1, name: 'vue课程', path: '/vue', type: 'vue'},
+                {id: 2, name: 'react课程', path: '/react', type: 'react'},
+                {id: 3, name: 'ng课程', path: '/ng', type: 'ng'},
+                {id: 4, name: '全部课程', path: '/all', type: 'all'}
             ]
         }
     }

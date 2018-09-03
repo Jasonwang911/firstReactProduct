@@ -4,7 +4,11 @@ import { getSliders, getHomelessons } from './../../api/home';
 let actions = {
     // 选择当前课程
     updateCurrentLesson(currentLesson) {
-        return {type: Types.SET_CURRENT_LESSON, currentLesson}
+        // return {type: Types.SET_CURRENT_LESSON, currentLesson}
+        return function(dispatch, getState) {
+            dispatch({type: Types.SET_CURRENT_LESSON, currentLesson});
+            actions.refreshAPI()(dispatch, getState)
+        }
     },
     // 获取轮播图
     getSlidersAPI() {
@@ -28,7 +32,7 @@ let actions = {
             let initParams = {
                 offset,
                 limit,
-                type: 'all'
+                type: currentLesson.type
             }
             dispatch({type: Types.SET_HOME_LISTS, payload: getHomelessons(initParams)})
         }

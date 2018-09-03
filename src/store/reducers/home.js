@@ -1,7 +1,12 @@
 import * as Types from './../types';
 
 let initHomeState = {
-    currentLesson: {id: 1, name: 'vue课程', path: '/vue'},
+    currentLesson: {
+        id: 1, 
+        name: 'vue课程', 
+        path: '/vue', 
+        type: 'vue'
+    },
     sliders: [],
     lessons: {
         hasMore: true,

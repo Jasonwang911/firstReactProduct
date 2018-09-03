@@ -9,14 +9,16 @@ import App from './App';
 import Home from './containers/Home/Home';
 import Profile from './containers/Profile/Profile';
 import Lesson from './containers/Lesson/Lesson';
+import Detail from './containers/Detail';
 
 ReactDOM.render(<Provider store={store}>
     <Router>
         <App>
             <Switch>
-                <Route path="/home" component={Home}  />
+                <Route exact path="/home" component={Home}  />
                 <Route path="/profile" component={Profile} />
                 <Route path="/lesson" component={Lesson} />
+                <Route path="/detail/:lessonId" component={Detail} />
                 <Redirect path="/" to="/home" />
             </Switch>
         </App>
