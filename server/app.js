@@ -1,7 +1,10 @@
 var express = require('express');
 var axios = require('axios');
+var bodyParser = require('body-parser');
+var crypto = require('crypto');
 
 var app = express();
+app.use(bodyParser.json());
 
 //  allow custom header and CORS ie不兼容 发请求体的都有options请求
 app.all('*',function (req, res, next) {
@@ -60,6 +63,77 @@ app.get('/lesson/:id', function(req, res) {
     })
     res.json({...lesson[0]})
 })
+
+
+/*  注册接口 
+*   {username: '', password: ''}
+*   {user: '登录后的用户名/null', msg: '状态信息', success: '成功后的提示', err: 0 }
+*/
+let userList = [
+    { username: 'jason', password: '4QrcOUm6Wau+VuBX8g+IPg==' }
+];
+app.post('/regist', function(req, res) {
+    let {
+        username,
+        password
+    } = req.body;
+    let user = userList.find(item => {
+        return item.username == username;
+    })
+    if(user) {
+        res.json({
+            user: null,
+            msg: '用户已注册',
+            success: '注册失败',
+            error: 1
+        })
+    }else {
+        password = crypto.createHash('md5').update(password).digest('base64');
+        userList.push({
+            username,
+            password
+        });
+        console.log(userList)
+        res.json({
+            user: username,
+            msg: '注册成功',
+            success: '恭喜你跳进react的大坑',
+            error: 0
+        })
+    }
+})
+
+
+/*  登录接口 
+*   {username: '', password: ''}
+*   {user: '登录后的用户名/null', msg: '状态信息', success: '成功后的提示', err: 0 }
+*/
+app.post('/login', function(req, res) {
+    let {
+        username,
+        password
+    } = req.body;
+    password = crypto.createHash('md5').update(password).digest('base64');
+    let user = userList.find(item => {
+        return (item.username === username) && (item.password === password)
+    })
+    if(user) {
+        res.json({
+            user: username,
+            msg: '登录成功',
+            success: '登录成功',
+            error: 0
+        })
+    }else {
+        res.json({
+            user: null,
+            msg: '登录失败',
+            success: '账号或密码错误',
+            error: 1
+        })
+    }
+})
+
 
 app.get('/', function(req, res) {
     res.json({code: 0});

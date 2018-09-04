@@ -12,11 +12,11 @@ export default class Tab extends Component {
                 </Link>
                 <Link to="/lesson" >
                     <i className="lesson-icon"></i>
-                    <span>我的课程</span>
+                    <span>资讯</span>
                 </Link>
                 <Link to="/profile" >
                     <i className="profile-icon"></i>
-                    <span>个人中心</span>
+                    <span>我的</span>
                 </Link>
             </div>
         )

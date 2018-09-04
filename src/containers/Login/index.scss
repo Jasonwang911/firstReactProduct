@@ -1,0 +1,36 @@
+.login{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 99;
+    .inner{
+        ul{
+            width: 85%;
+            margin: 1.06rem auto 0;
+            li{
+                display: flex;
+                flex-direction: column;
+                label{
+                    line-height: 1rem;
+                }
+                input{
+                    line-height: 0.6rem;
+                    border: 1px solid #ccc;
+                }
+                a{
+                    color: #0D92F4;
+                    line-height: 0.8rem;
+                }
+                button{
+                    line-height: 0.8rem;
+                    background: #0D92F4;
+                    color: #fff;
+                    font-size: 0.4rem;
+                }
+            }
+        }
+    } 
+}

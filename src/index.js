@@ -10,6 +10,8 @@ import Home from './containers/Home/Home';
 import Profile from './containers/Profile/Profile';
 import Lesson from './containers/Lesson/Lesson';
 import Detail from './containers/Detail';
+import Login from './containers/Login';
+import Regist from './containers/Regist';
 
 ReactDOM.render(<Provider store={store}>
     <Router>
@@ -19,6 +21,8 @@ ReactDOM.render(<Provider store={store}>
                 <Route path="/profile" component={Profile} />
                 <Route path="/lesson" component={Lesson} />
                 <Route path="/detail/:lessonId" component={Detail} />
+                <Route path="/login" component={Login} />
+                <Route path="/regist" component={Regist} />
                 <Redirect path="/" to="/home" />
             </Switch>
         </App>

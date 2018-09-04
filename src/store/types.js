@@ -8,3 +8,7 @@ export const SET_HOME_LISTS = 'SET_HOME_LISTS';
 export const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS';
 // 清空首页数据
 export const CLEAR_LESSONS = 'CLEAR_LESSONS';
+// 注册和登录
+export const SET_USER_INFO = 'SET_USER_INFO';
+// 清空成功或失败的提示内容
+export const CLEAE_MESSAGE = 'CLEAE_MESSAGE';
