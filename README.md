@@ -34,3 +34,6 @@ connect()()
 
 
 ## react-swipe   npm install swipe-js-iso react-swipe --save
+
+## redux 刷新清空
+

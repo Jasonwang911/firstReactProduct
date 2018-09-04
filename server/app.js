@@ -2,13 +2,20 @@ var express = require('express');
 var axios = require('axios');
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
+var session = require('express-session');
 
 var app = express();
 app.use(bodyParser.json());
+app.use(session({
+    resave: true,
+    secret: 'jsonlovereact',
+    saveUninitialized: true
+}))
 
 //  allow custom header and CORS ie不兼容 发请求体的都有options请求
 app.all('*',function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:7999');
+    res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
@@ -93,7 +100,6 @@ app.post('/regist', function(req, res) {
             username,
             password
         });
-        console.log(userList)
         res.json({
             user: username,
             msg: '注册成功',
@@ -118,6 +124,7 @@ app.post('/login', function(req, res) {
         return (item.username === username) && (item.password === password)
     })
     if(user) {
+        req.session.user = username;
         res.json({
             user: username,
             msg: '登录成功',
@@ -132,6 +139,15 @@ app.post('/login', function(req, res) {
             error: 1
         })
     }
+})
+
+// 通过sessio获取用户信息，用于校验用户是否登录
+app.get('/validate', function(req, res) {
+    res.json({
+        user: req.session.user,
+        msg: '',
+        success: ''
+    })
 })
 
 

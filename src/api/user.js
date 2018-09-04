@@ -9,3 +9,8 @@ export function toRegist(username, password) {
 export function toLogin(username, password) {
     return axios.post('/login', {username, password});
 }
+
+// 校验用户是否登录
+export function toValidate() {
+    return axios.get('/validate')
+}
