@@ -37,3 +37,7 @@ connect()()
 
 ## redux 刷新清空
 
+
+## 路由懒加载
+    loadable
+

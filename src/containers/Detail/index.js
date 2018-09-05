@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import './index.scss';
 import { getLesson } from './../../api/home';
 import MHeader from './../../components/Header';

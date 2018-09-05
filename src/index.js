@@ -1,21 +1,39 @@
+import 'babel-polyfill';
+
 import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
+import Loadable from 'react-loadable';
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import './common/rem';
 import './common/reset.scss';
 import App from './App';
-import Home from './containers/Home/Home';
-import Profile from './containers/Profile/Profile';
-import Lesson from './containers/Lesson/Lesson';
-import Detail from './containers/Detail';
-import Login from './containers/Login';
-import Regist from './containers/Regist';
+import Loading from './components/Loading';
+// import Home from './containers/Home/Home';
+// import Profile from './containers/Profile/Profile';
+// import Lesson from './containers/Lesson/Lesson';
+// import Detail from './containers/Detail';
+// import Login from './containers/Login';
+// import Regist from './containers/Regist';
 // 权限校验
 import ProtectedRoute from './ProtectedRoute';
+// 异步加载组件
+import syncComponent from './syncComponent';
 
-ReactDOM.render(<Provider store={store}>
+// let Home = syncComponent(() => import('./containers/Home/Home'));
+let Profile = syncComponent(() => import('./containers/Profile/Profile'));
+let Lesson = syncComponent(() => import('./containers/Lesson/Lesson'));
+let Detail = syncComponent(() => import('./containers/Detail'));
+let Login = syncComponent(() => import('./containers/Login'));
+let Regist = syncComponent(() => import('./containers/Regist'));
+
+const Home = Loadable({
+    loader: () => import('./containers/Home/Home'),
+    loading: Loading,
+});
+
+ReactDOM.render(<Provider store={store}> 
     <Router>
         <App>
             <Switch>

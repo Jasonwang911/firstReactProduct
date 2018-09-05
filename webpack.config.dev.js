@@ -10,6 +10,7 @@ module.exports = {
     // },
     output: {
         path:require('path').resolve('./dist'),
+        chunkFilename: '[name].bundle.js',
         filename: "build.js"
     },
     module: {
@@ -43,5 +44,10 @@ module.exports = {
         new HtmlWebpackPlugin({
           template:'./index.html'
         })
-    ]
+    ],
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all'
+    //     }
+    // }
 }
