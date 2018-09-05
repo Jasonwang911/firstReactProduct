@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
 import MHeader from '../../components/Header';
 import { connect } from 'react-redux';
 import actions from '../../store/actions/user';
 import '../Login/index.scss'
 
+@withRouter
 @connect(state => ({...state.user}),actions)
 export default class Regist extends Component {
 

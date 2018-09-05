@@ -20,9 +20,11 @@ let actions = {
         return {type: Types.CLEAE_MESSAGE, info: {msg: '', success: '', error: 0 }}
     },
     toLoginAPI(username, password, history) {
+        console.log(history)
         return function(dispatch, getState) {
             toLogin(username, password)
             .then( res => {
+                console.log(history)
                 dispatch({type: Types.SET_USER_INFO, user: res});
                 if(res.error === 0) {
                     setTimeout( () => {

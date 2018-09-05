@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import actions from '../../store/actions/user';
 import MHeader from '../../components/Header';
 import './index.scss'
 
+@withRouter
 @connect(state => ({...state.user}), actions)
 export default class Login extends Component {
 
@@ -39,6 +40,7 @@ export default class Login extends Component {
                         </li>
                         <li>
                             <button onClick={ () => {
+                                console.log('====>',this.props.history)
                                 this.props.toLoginAPI(this.username.value, this.password.value, this.props.history)
                             }}>登录</button>
                         </li>
