@@ -12,6 +12,8 @@ import Lesson from './containers/Lesson/Lesson';
 import Detail from './containers/Detail';
 import Login from './containers/Login';
 import Regist from './containers/Regist';
+// 权限校验
+import ProtectedRoute from './ProtectedRoute';
 
 ReactDOM.render(<Provider store={store}>
     <Router>
@@ -19,7 +21,8 @@ ReactDOM.render(<Provider store={store}>
             <Switch>
                 <Route exact path="/home" component={Home}  />
                 <Route path="/profile" component={Profile} />
-                <Route path="/lesson" component={Lesson} />
+                {/* <Route path="/lesson" component={Lesson} /> */}
+                <ProtectedRoute path="/lesson" component={Lesson} />
                 <Route path="/detail/:lessonId" component={Detail} />
                 <Route path="/login" component={Login} />
                 <Route path="/regist" component={Regist} />
